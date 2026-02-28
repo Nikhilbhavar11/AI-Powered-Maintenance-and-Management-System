@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predictive Maintenance Platform — Real-time IoT analytics and AI-powered diagnostics">
+    <title>Predictive Maintenance Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- TOP BAR                                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <header id="topbar">
+        <div class="topbar-left">
+            <div class="logo">
+                <span class="logo-icon">⚙</span>
+                <h1>PredictiveMaint<span class="accent">AI</span></h1>
+            </div>
+            <span class="badge">LIVE</span>
+        </div>
+        <div class="topbar-right">
+            <div class="device-selector">
+                <label for="device-select">Device:</label>
+                <select id="device-select">
+                    <option value="">Loading…</option>
+                </select>
+            </div>
+            <div id="connection-status" class="conn-badge disconnected">
+                <span class="conn-dot"></span>
+                <span class="conn-text">Offline</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- MAIN LAYOUT                                        -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <main id="app">
+        <!-- ─── STATUS CARDS ROW ─────────────────────────── -->
+        <section id="status-cards">
+            <div class="card health-card" id="card-health">
+                <div class="card-icon">💚</div>
+                <div class="card-body">
+                    <span class="card-label">Health Score</span>
+                    <span class="card-value" id="val-health">—</span>
+                    <span class="card-sub" id="sub-health"></span>
+                </div>
+            </div>
+            <div class="card risk-card" id="card-risk">
+                <div class="card-icon">🛡️</div>
+                <div class="card-body">
+                    <span class="card-label">Risk Level</span>
+                    <span class="card-value" id="val-risk">—</span>
+                    <span class="card-sub" id="sub-risk"></span>
+                </div>
+            </div>
+            <div class="card maint-card" id="card-maint">
+                <div class="card-icon">🔧</div>
+                <div class="card-body">
+                    <span class="card-label">Maintenance</span>
+                    <span class="card-value" id="val-maint">—</span>
+                    <span class="card-sub" id="sub-maint"></span>
+                </div>
+            </div>
+            <div class="card stress-card" id="card-stress">
+                <div class="card-icon">📊</div>
+                <div class="card-body">
+                    <span class="card-label">Stress Index</span>
+                    <span class="card-value" id="val-stress">—</span>
+                    <span class="card-sub" id="sub-stress"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── CHARTS + LIVE READINGS ───────────────────── -->
+        <section id="charts-section">
+            <div class="panel chart-panel">
+                <div class="panel-header">
+                    <h2>Sensor Telemetry</h2>
+                    <div class="chart-controls">
+                        <button class="btn-time active" data-seconds="30">30s</button>
+                        <button class="btn-time" data-seconds="60">1m</button>
+                        <button class="btn-time" data-seconds="300">5m</button>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="sensor-chart"></canvas>
+                </div>
+            </div>
+            <div class="panel chart-panel">
+                <div class="panel-header">
+                    <h2>Health & Predictions</h2>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="health-chart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── LIVE SENSOR GAUGES ───────────────────────── -->
+        <section id="gauges-section">
+            <div class="panel gauge-panel">
+                <h3>Current <span class="unit">(A)</span></h3>
+                <div class="gauge-value" id="gauge-current">—</div>
+                <div class="gauge-trend" id="trend-current"></div>
+            </div>
+            <div class="panel gauge-panel">
+                <h3>Temperature <span class="unit">(°C)</span></h3>
+                <div class="gauge-value" id="gauge-temp">—</div>
+                <div class="gauge-trend" id="trend-temp"></div>
+            </div>
+            <div class="panel gauge-panel">
+                <h3>Vibration <span class="unit">(g)</span></h3>
+                <div class="gauge-value" id="gauge-vib">—</div>
+                <div class="gauge-trend" id="trend-vib"></div>
+            </div>
+            <div class="panel gauge-panel failure-panel">
+                <h3>Failure Reason</h3>
+                <div class="failure-text" id="failure-reason">No issues detected</div>
+            </div>
+        </section>
+
+        <!-- ─── AI CHAT PANEL ────────────────────────────── -->
+        <section id="chat-section">
+            <div class="panel chat-panel">
+                <div class="panel-header">
+                    <h2>🤖 AI Diagnostics Assistant</h2>
+                    <span class="chat-provider" id="chat-provider">Llama 3</span>
+                </div>
+                <div id="chat-messages" class="chat-messages">
+                    <div class="chat-msg system">
+                        <div class="msg-content">
+                            Hello! I'm your AI maintenance assistant. Select a device and ask me about its health, risks, or required actions. I only answer from real sensor data — no guessing.
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-quick-actions">
+                    <button class="quick-btn" data-qid="WHY_MAINTENANCE">Why maintenance?</button>
+                    <button class="quick-btn" data-qid="IS_MACHINE_SAFE">Is it safe?</button>
+                    <button class="quick-btn" data-qid="WHAT_IS_WRONG">What's wrong?</button>
+                    <button class="quick-btn" data-qid="WHAT_ACTION_REQUIRED">Actions needed?</button>
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" id="chat-input" placeholder="Ask about this device…" autocomplete="off">
+                    <button id="chat-send" class="btn-send">
+                        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── FOOTER ───────────────────────────────────────── -->
+    <footer id="footer">
+        <span>PredictiveMaintAI © 2026</span>
+        <span id="footer-timestamp"></span>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# Credentials — NEVER push to git
+firebase_credentials.json
+*.pem
+*.key
+
+# ML models (large binary files)
+models/*.joblib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Pyre
+.pyre/
+.pyre_configuration
+
+# Misc
+*.log
+ml_report.html
