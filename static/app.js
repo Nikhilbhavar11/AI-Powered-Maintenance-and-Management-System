@@ -164,10 +164,10 @@ function setConnectionStatus(connected) {
 // ═══════════════════════════════════════════════════════════
 
 const CHART_COLORS = {
-    current:     { line: "#6366f1", fill: "rgba(99,102,241,0.1)" },
+    current: { line: "#6366f1", fill: "rgba(99,102,241,0.1)" },
     temperature: { line: "#f43f5e", fill: "rgba(244,63,94,0.1)" },
-    vibration:   { line: "#22d3ee", fill: "rgba(34,211,238,0.1)" },
-    health:      { line: "#34d399", fill: "rgba(52,211,153,0.15)" },
+    vibration: { line: "#22d3ee", fill: "rgba(34,211,238,0.1)" },
+    health: { line: "#34d399", fill: "rgba(52,211,153,0.15)" },
 };
 
 const CHART_DEFAULTS = {
@@ -530,7 +530,7 @@ async function sendChatMessage(message, questionId = null) {
         // Update provider badge
         if (result.provider) {
             document.getElementById("chat-provider").textContent =
-                result.provider === "groq" ? "Llama 3 (Groq)" : "Llama 3 (Local)";
+                result.provider === "groq" ? "Llama 3 (Groq)" : "Llama 3.2 (Local)";
         }
     } else {
         addChatMessage("assistant", "Sorry, I couldn't get a response. Please check the server logs.");

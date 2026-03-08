@@ -19,29 +19,30 @@ FIREBASE_CREDENTIALS_PATH = os.getenv(
 )
 FIREBASE_DATABASE_URL = os.getenv(
     "FIREBASE_DATABASE_URL",
-    "https://your-project-id.firebaseio.com",  # Replace with your RTDB URL
+    "https://ai-prediction-app-11e6a-default-rtdb.asia-southeast1.firebasedatabase.app/",  # Replace with your RTDB URL
 )
 
 # ─── Data Paths in Firebase RTDB ─────────────────────────────────
 # Root node under which all devices reside
-MACHINES_ROOT = "/machines"
+MACHINES_ROOT = "/machine"
 
 # Per-device sub-paths (formatted with device_id at runtime)
-LIVE_PATH_TEMPLATE = "/machines/{device_id}/live"
-HISTORY_PATH_TEMPLATE = "/machines/{device_id}/history"
-PREDICTIONS_LATEST_TEMPLATE = "/machines/{device_id}/predictions/latest"
-PREDICTIONS_HISTORY_TEMPLATE = "/machines/{device_id}/predictions/history"
+LIVE_PATH_TEMPLATE = "/machine/{device_id}/live"
+HISTORY_PATH_TEMPLATE = "/machine/{device_id}/history"
+PREDICTIONS_LATEST_TEMPLATE = "/machine/{device_id}/predictions/latest"
+PREDICTIONS_HISTORY_TEMPLATE = "/machine/{device_id}/predictions/history"
 
 # ─── ML Model Configuration ─────────────────────────────────────
 MODEL_DIR = BASE_DIR / "models"
 MODEL_PATH = MODEL_DIR / "rf_model.joblib"
 
-# Training parameters
+# Training parameters — calibrated to ESP32 sensor ranges
+# Normal readings: current ~0.03-0.11A, temp ~28-33°C, vibration ~0.10-0.25g
 WEAK_LABEL_THRESHOLDS = {
-    "vibration_high": 5.0,       # g — sustained high vibration
-    "temperature_high": 75.0,    # °C — rising temperature threshold
-    "current_abnormal_low": 0.5, # A — abnormally low current draw
-    "current_abnormal_high": 15.0,  # A — abnormally high current draw
+    "vibration_high": 0.50,        # g — high vibration for ESP32 accelerometer
+    "temperature_high": 45.0,      # °C — elevated temperature threshold
+    "current_abnormal_low": 0.01,  # A — abnormally low current draw
+    "current_abnormal_high": 0.25, # A — abnormally high current draw
 }
 
 # ─── Analytics Configuration ─────────────────────────────────────
@@ -54,7 +55,7 @@ SCHEDULER_INTERVAL_SECONDS = float(os.getenv("SCHEDULER_INTERVAL", "4.0"))
 
 # ─── LLM / Chat Configuration ───────────────────────────────────
 # Supported providers: "groq", "ollama"
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")
 
 # Groq (cloud) settings
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
@@ -63,7 +64,7 @@ GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Ollama (local) settings
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
 
 # ─── Server Configuration ───────────────────────────────────────
 HOST = os.getenv("HOST", "0.0.0.0")

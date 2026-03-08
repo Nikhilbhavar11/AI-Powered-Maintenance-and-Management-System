@@ -29,7 +29,7 @@ from typing import Any, Dict, Optional
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from pydantic import BaseModel
@@ -116,6 +116,12 @@ app.add_middleware(
 
 # Serve the dashboard
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/")
+async def root():
+    """Redirect root to the dashboard."""
+    return RedirectResponse(url="/static/index.html")
 
 
 # ═══════════════════════════════════════════════════════════════
