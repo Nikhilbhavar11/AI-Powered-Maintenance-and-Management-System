@@ -325,6 +325,7 @@ function formatTimestamp(ts) {
 
 function populateDeviceSelector(devices) {
     const select = document.getElementById("device-select");
+    const previouslySelected = state.selectedDevice;
     select.innerHTML = "";
 
     if (devices.length === 0) {
@@ -339,8 +340,10 @@ function populateDeviceSelector(devices) {
         select.appendChild(opt);
     });
 
-    // Auto-select first device
-    if (!state.selectedDevice && devices.length > 0) {
+    // Restore previously selected device if it still exists, otherwise auto-select first
+    if (previouslySelected && devices.some(d => d.device_id === previouslySelected)) {
+        select.value = previouslySelected;
+    } else if (devices.length > 0) {
         selectDevice(devices[0].device_id);
     }
 }
