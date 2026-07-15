@@ -250,7 +250,7 @@ graph TD
     DS1 -->|Device IDs| P1["P1: Device<br/>Discovery"]
     P1 -->|Registered devices| DS2[("Device<br/>Registry")]
     
-    DS1 -->|History (50 records)| P2["P2: Feature<br/>Engineering"]
+    DS1 -->|"History (50 records)"| P2["P2: Feature<br/>Engineering"]
     P2 -->|13 features| P3["P3: ML<br/>Prediction"]
     
     P3 -->|Prediction result| DS1
