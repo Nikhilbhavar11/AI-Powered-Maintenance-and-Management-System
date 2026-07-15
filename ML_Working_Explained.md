@@ -358,4 +358,3 @@ graph TD
 
 ---
 
-*Report generated: February 28, 2026*
