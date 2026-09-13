@@ -1,12 +1,5 @@
 # ⚙️ PredictiveMaintAI — Real-Time IoT Predictive Maintenance & Explainable AI
 
-[![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Firebase](https://img.shields.io/badge/Database-Firebase%20RTDB-FFCA28?logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Chart.js](https://img.shields.io/badge/Frontend-Chart.js%20%7C%20Vanilla%20CSS-FF6384?logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
-[![Llama 3](https://img.shields.io/badge/AI%20Assistant-Llama%203%20(Groq%20%7C%20Ollama)-0467DF?logo=meta&logoColor=white)](https://llama.meta.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 An end-to-end, commercial-grade **Predictive Maintenance and Diagnostics Platform** designed for industrial machinery and IoT sensor arrays. The platform ingests telemetry data from **ESP32 microcontrollers**, extracts **13 real-time engineered features**, forecasts impending equipment failures using an ensemble **RandomForest ML classifier**, streams live predictions via **WebSockets**, and offers **data-grounded conversational diagnostics** powered by **Llama 3**.
 
@@ -19,7 +12,7 @@ A visual walkthrough of the real-time Predictive Maintenance web platform and co
 ### 1. Live Telemetry & Machine Health Overview (`Dashboard 1`)
 Real-time operational dashboard monitoring edge device `device_002` with high-frequency telemetry, ML-derived health score, and risk assessment:
 
-![Predictive Maintenance Dashboard Overview](screenshots/dashboard_1.png)
+![Predictive Maintenance Dashboard Overview](Screenshots/dashboard_1.png)
 
 - **KPI Status Cards**:
   - **Health Score (`57.2`)**: Continuously calculated using class probability distribution from the Random Forest model.
@@ -36,7 +29,7 @@ Real-time operational dashboard monitoring edge device `device_002` with high-fr
 ### 2. Conversational AI Diagnostics Assistant (`Dashboard 2`)
 Explainable AI interface powered by Llama 3 that allows plant operators and engineers to query equipment state and receive data-grounded insights:
 
-![AI Diagnostics Assistant Panel](screenshots/dashboard_2.png)
+![AI Diagnostics Assistant Panel](Screenshots/dashboard_2.png)
 
 - **Interactive AI Dialogue**: Grounded conversational assistant that receives real-time JSON context (sensor readings, trend vectors, threshold margins) to eliminate hallucinations.
 - **One-Click Quick Actions**:
@@ -279,7 +272,7 @@ Settings can be customized via environment variables or directly in `config.py`:
 ### Custom Sensor Rig & Circuitry
 The edge telemetry module integrates an ESP-32 SoC with multi-sensor probing to monitor mechanical and electrical parameters:
 
-![Hardware PCB Module](screenshots/hardware_pcb_module.png)
+![Hardware PCB Module](Screenshots/hardware_pcb_module.png)
 
 - **Microcontroller**: ESP-32 Wi-Fi / Bluetooth IoT microcontroller.
 - **Vibration Sensing**: MPU-6050 3-axis accelerometer and gyro detecting micro-vibrations and mechanical imbalances.
