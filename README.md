@@ -12,7 +12,7 @@ A visual walkthrough of the real-time Predictive Maintenance web platform and co
 ### 1. Live Telemetry & Machine Health Overview (`Dashboard 1`)
 Real-time operational dashboard monitoring edge device `device_002` with high-frequency telemetry, ML-derived health score, and risk assessment:
 
-![Predictive Maintenance Dashboard Overview](Screenshots/dashboard_1.png)
+![Predictive Maintenance Dashboard Overview](Screenshots/dashboard1.png)
 
 - **KPI Status Cards**:
   - **Health Score (`57.2`)**: Continuously calculated using class probability distribution from the Random Forest model.
@@ -29,7 +29,7 @@ Real-time operational dashboard monitoring edge device `device_002` with high-fr
 ### 2. Conversational AI Diagnostics Assistant (`Dashboard 2`)
 Explainable AI interface powered by Llama 3 that allows plant operators and engineers to query equipment state and receive data-grounded insights:
 
-![AI Diagnostics Assistant Panel](Screenshots/dashboard_2.png)
+![AI Diagnostics Assistant Panel](Screenshots/dashboard2.png)
 
 - **Interactive AI Dialogue**: Grounded conversational assistant that receives real-time JSON context (sensor readings, trend vectors, threshold margins) to eliminate hallucinations.
 - **One-Click Quick Actions**:
