@@ -40,11 +40,11 @@ FirebaseAuth auth;
 FirebaseConfig config;
 
 /********************* WIFI & FIREBASE *********************/
-const char* ssid = "Nikhil";
-const char* password = "Nikhil11";
+const char* ssid = "Wifi_Name";
+const char* password = "Wifi_Password";
 
-String API_KEY = "AIzaSyAcZwPuoT_0e2AEpZimVnLbrMtutQHiKWI";
-String DATABASE_URL = "https://prediction-system-8200f-default-rtdb.asia-southeast1.firebasedatabase.app";
+String API_KEY = "Enter_Gemini_api_key_here";
+String DATABASE_URL = "Enter_firebase_database_URL_here";
 
 /************************************************************
    FIX: Temperature retry + smoothing
