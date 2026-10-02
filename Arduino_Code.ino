@@ -43,7 +43,7 @@ FirebaseConfig config;
 const char* ssid = "Wifi_Name";
 const char* password = "Wifi_Password";
 
-String API_KEY = "Enter_Gemini_api_key_here";
+String API_KEY = "Enter_Firebase_project_api_key_here";
 String DATABASE_URL = "Enter_firebase_database_URL_here";
 
 /************************************************************
